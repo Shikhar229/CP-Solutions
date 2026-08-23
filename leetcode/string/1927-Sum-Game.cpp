@@ -30,53 +30,15 @@ public:
             }
         }
 
-        if(lq > rq){
-            int rem= lq-rq;
-            // game will shift to left
-            if(rem %2 == 1){
-                return true;
-
-            }
-
-            int option = (rem + 1)/2;
-            int diff =  rightsum-leftsum;
-            if(diff - 9*option !=0){
-                return true;
-            }
-            else{
-                return false;
-            }
-
+        if((lq+rq) %2 == 1){
+            return true;
         }
-        else if(lq < rq){
-            int rem= rq-lq;
-            if(rem % 2 == 1){
-                return true;
-            }
 
-            int option = rem/2;
-            int diff = leftsum -rightsum;
-            if(diff - 9* option != 0){
-                return true;
-
-            }
-            else{
-                return false;
-            }
-
-
+        return leftsum-rightsum != 9 * (rq-lq)/2;
             
+        
 
-        }
-        else{
-            if(leftsum == rightsum){
-                return false;
-            }
-            else{
-                return true;
-            }
-
-        }
+        
         
     }
 };
