@@ -77,8 +77,7 @@ void solve() {
     }
     cout << sum << endl;
 
-
-
+    
 
 
 }
