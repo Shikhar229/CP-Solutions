@@ -21,31 +21,16 @@ public:
         int right = height(root->right);
         if(abs(left-right)>1){
             return 1e9;
-
         }
 
-        
         int height = 1 + max(left, right );
-
-        cout << root->val << " "<< left << " " << right << " " << height <<endl;
         return height;
-
-
-
-        
+ 
     }
     bool isBalanced(TreeNode* root) {
-        // left and right height <= 1
-
-        if(height(root) >= 1e9){
-            return false;
-        }
-        else{
-            return true;
-        }
-
+        if(height(root) >= 1e9) return false;
+        return true;
         
-
-        
+          
     }
 };
