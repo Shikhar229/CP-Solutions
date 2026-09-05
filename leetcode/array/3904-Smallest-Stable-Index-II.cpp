@@ -2,14 +2,14 @@ class Solution {
 public:
     int firstStableIndex(vector<int>& nums, int k) {
         int n= nums.size();
-        vector<long long>mini(n,1e9);
+        vector<int>mini(n,1e9);
         mini[n-1] = nums[n-1];
         for(int i = n-2; i >= 0;i--){
-            mini[i] = min(mini[i+1],1LL *nums[i]);
+            mini[i] = min(mini[i+1],nums[i]);
         }
-        long long maxi = -1;
+        int maxi = -1;
         for(int i = 0;i < n; i++){
-            maxi = max(maxi,1LL *nums[i]);
+            maxi = max(maxi,nums[i]);
             if(maxi-mini[i] <= k){
                 return i;
             }
