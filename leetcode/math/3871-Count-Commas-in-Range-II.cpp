@@ -10,7 +10,7 @@ public:
 
         ll i = 1;
         ll multiply = 1000;
-        ll l = 1000;
+        
 
         ll count = 0;
         while(n >= multiply){
