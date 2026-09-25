@@ -11,29 +11,30 @@
  */
 class Solution {
 public:
-
-
     bool isSymmetric(TreeNode* root) {
-        if(root -> left == NULL && root-> right == NULL) return true;
-        queue<pair<TreeNode*, TreeNode*>>q;
+        if(root->left == NULL && root->right == NULL) return true;
+        queue<pair<TreeNode*,TreeNode*>>q;
         q.push({root->left,root->right});
-
         while(!q.empty()){
-            TreeNode* root1 = q.front().first;
-            TreeNode* root2 = q.front().second;
+            TreeNode* n1 = q.front().first;
+            TreeNode*n2 = q.front().second;
             q.pop();
 
-            if(root1 == NULL && root2 == NULL) continue;
-            if(root1 == NULL && root2 != NULL || root1 != NULL && root2 == NULL) return false;
+            if(n1 == NULL && n2 == NULL)  continue;
+            if((n1 == NULL && n2 != NULL) || ( n1 != NULL && n2 == NULL)) return false;
+            
+            if(n1->val != n2->val) return false;
 
-            if(root1->val != root2->val)return false;
+            q.push({n1->right,n2->left});
+            q.push({n1->left,n2->right});
 
 
-            q.push({root1->right,root2->left});
-            q.push({root1->left,root2->right});
 
+        
         }
         return true;
+
+        
         
         
     }
