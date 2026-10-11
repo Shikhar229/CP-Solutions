@@ -1,48 +1,41 @@
-#include <iostream>
-#include <set>
-
+#include <bits/stdc++.h>
 using namespace std;
+#define ll long long 
 
-int main() {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
 
-    int x, n;
+int main(){
+    ll x,n;
     cin >> x >> n;
+    vector<ll>p(n);
+    for(int i = 0;i < n; i++){
+        cin >> p[i];
+    }
+    // I want dynamically a position left and right boundary
+    // I want to find a number which is just just smaller than x
+    // and I want a number which is just greater than that number
 
-    set<int> positions;
-    multiset<int> lengths;
+    // lower bound >= x
+    set<ll>position;
+    multiset<ll>length;
+    position.insert(0);
+    position.insert(x);
 
-    // Initial state: street goes from 0 to x
-    positions.insert(0);
-    positions.insert(x);
-    lengths.insert(x);
+    length.insert(x);
+    
+    for(int i = 0;i < n; i++){
+        int q = p[i];
+        auto right = position.upper_bound(q);
+        auto left = prev(right);
 
-    for (int i = 0; i < n; i++) {
-        int p;
-        cin >> p;
-
-        // Find the right boundary (first element greater than p)
-        auto r_it = positions.upper_bound(p);
-        int right = *r_it;
+        ll old = *right-*left;
+        length.erase(length.find(old));
+        length.insert(q-*left);
+        length.insert(*right-q);
+        position.insert(q);
         
-        // Find the left boundary (the element right before r_it)
-        int left = *prev(r_it);
-
-        // Remove the old segment length
-        lengths.erase(lengths.find(right - left));
-
-        // Insert the two new segment lengths
-        lengths.insert(p - left);
-        lengths.insert(right - p);
-
-        // Insert the new light position
-        positions.insert(p);
-
-        // The maximum length is the last element in the multiset
-        cout << *lengths.rbegin() << (i == n - 1 ? "" : " ");
+        cout << *length.rbegin()<< " ";
     }
     cout << "\n";
 
-    return 0;
+
 }
