@@ -40,42 +40,59 @@ bool isPrime(ll n)
     return true;
 }
 
+
+void josephus_1(vector<int>&nums){
+    int n= nums.size();
+    if(n == 1){
+        cout << nums[0] << "\n";
+        return;
+    }
+    for(int i = 1; i< n;i+=2){
+        cout << nums[i] << "\n";
+
+    }
+    vector<int>narr;
+    if(n%2 == 0){
+        for(int i = 0;i <n;i+=2){
+            narr.push_back(nums[i]);
+        }
+    }
+    else{
+        narr.push_back(nums[n-1]);
+        for(int i = 0;i < n-1; i+=2){
+            narr.push_back(nums[i]);
+        }
+
+    }
+
+    // solve for remaining elements
+    josephus_1(narr);
+
+
+}
+
+
 void solve()
 {
 
     int n;
     cin >> n;
+    vector<int>a(n);
 
-    set<int> st;
-    for (int i = 1; i <= n; i++)
-    {
-        st.insert(i);
-    }
-    // cout << st.empty() << "\n";
-    auto it = st.begin();
-    while (!st.empty())
-    {
-        if(it == st.end()){
-            it = st.begin();
-        }
-        ++it;
-        if(it == st.end()){
-            it = st.begin();
-        }
-        auto dalle  = it;
-        cout << *it << " ";
-        ++it;
-        st.erase(dalle);
-        
-        if (it == st.end() && !st.empty()) {
-            it = st.begin();
-        }
-        
 
-        
-        
+    for (int i = 0; i < n; i ++)
+    {
+        a[i] = i+1;
+
+
+
+
     }
-    cout << "\n";
+    josephus_1(a);
+
+
+
+
 }
 
 int main()
