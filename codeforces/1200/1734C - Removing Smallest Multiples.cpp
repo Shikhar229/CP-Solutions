@@ -122,27 +122,30 @@ void solve() {
         }
     }
 
-    vector<bool> deleted(n + 1, false);
+    // I have an vector of size n+1 
+    // i gives number 
+    // and value tells it is present in t or not
 
-   
+    // Now I will do sieve
+
     ll ans = 0;
     for(int i = 1; i<= n;i++){
         for(int j = i; j <= n; j+= i){
+
             if(!present[j]){
-                if(!deleted[j]){
-                    ans += i;
-                    deleted[j] = true;
-                }
-                
-                
+
+                ans += i;
+                present[j] = true;
             }
             else{
-                break;
+                if(s[j-1] == '1') break;
             }
         }
     }
-    // cout <<"\n";
+
+    
     cout << ans << "\n";
+    
     
     
 
