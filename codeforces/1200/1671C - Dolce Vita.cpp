@@ -110,36 +110,48 @@ bool checkPrime(ll n) {
 // -----solve-----void solve() {
 
 void solve() {
-    int n;
-    long long x;
-    cin >> n >> x;
-    vector<long long> a(n);
-    for (int i = 0; i < n; i++) {
+    ll n,k;
+    cin >> n >> k;
+    vector<ll>a(n);
+    for(int i = 0;i <n ; i++){
         cin >> a[i];
     }
-    
-    sort(a.begin(), a.end()); 
+    sort(a.begin(),a.end());
+
     vector<ll>prefix(n);
     prefix[0] = a[0];
-    for(int i= 1;i < n; i++){
+    for(int i= 1;i < n ;i++){
         prefix[i] = prefix[i-1] + a[i];
     }
-  
     ll ans = 0;
+    for(int i = 0;i < n; i++){
+        // for this prefix find how manu days i can take int
+        ll l = 0;
+        ll r = 1e9 + 1;
+        
+        ll curr = -1;
+        while(l <=r){
+            ll days = l + (r-l)/2;
+            if(prefix[i] + (i+1) * days <= k){
+                curr = days;
+                l = days + 1;
 
-    for (int i = 0; i < n; i++) {
-        if(prefix[i] > x) break;
-        
-        
-        
-        if (prefix[i] <= x) {
-            ll d = ((x -prefix[i]) / (i + 1)) + 1;
-            // cout << "idx: " << i << " " << "days: "<<  d << endl;
-            ans += d;
-        } 
+            }
+            else{
+                r = days-1;
+            }
+        }
+        if(curr == -1){
+            break;
+        }
+        else{
+            ans += (curr+1);
+        }
+
     }
-
     cout << ans << "\n";
+
+
 }
 
 
