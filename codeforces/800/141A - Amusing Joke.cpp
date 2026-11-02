@@ -115,54 +115,21 @@ bool checkPrime(ll n) {
 
 // -----solve-----
 void solve() {
-    vector<int>freq(26,0);
+    // vector<int>freq(26,0);
     string s1;
     string s2;
     string s3;
     cin >> s1 >> s2 >> s3 ;
-    for(int i = 0;i < s1.size(); i++){
-        int idx = s1[i]-65;
-        // cout <<"idx: " <<i << " " << idx << endl;
-        freq[idx]++;
-    }
-    // for(int i = 0; i< 26; i++){
-    //     cout << freq[i] << " ";
-    // }/;
-    for(char c : s2){
-        int idx = c-65;
-        freq[idx]++;
-    }
-    // for(int i = 0; i< 26; i++){
-    //     cout << freq[i] << " ";
-    // }
-    // cout << endl;
-    for(char c : s3){
-        int idx = c-65;
-        freq[idx]--;
-
-
-    }
-
-    // for(int i = 0; i< 26; i++){
-    //     cout << freq[i] << " ";
-    // }
-    // cout << endl;
-
-    bool found = false;
-
-    for(int i = 0;i < 26; i++){
-        if(freq[i] != 0){
-            found =true;
-            break;
-        }
-    }
-    if(!found){
+    string a  = s1 + s2;
+    sort(a.begin(),a.end());
+    sort(s3.begin(),s3.end());
+    if(a == s3){
         cout << "YES\n";
     }
     else{
         cout << "NO\n";
     }
-    
+
 
 
 }
