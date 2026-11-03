@@ -5,7 +5,7 @@ public:
     vector<ll>dp;
 
     ll memo(int i, int n, vector<ll>&dp, vector<int>&nums){
-        if(i >= n){
+        if(i < 0){
             return 0;
             
         }
@@ -14,8 +14,8 @@ public:
             return dp[i];
         }
 
-        ll pick = nums[i] + memo(i+2,n,dp,nums);
-        ll skip = memo(i+1,n,dp,nums);
+        ll pick = nums[i] + memo(i-2,n,dp,nums);
+        ll skip = memo(i-1,n,dp,nums);
         return dp[i] = max(pick,skip);
 
         
@@ -24,7 +24,7 @@ public:
     int rob(vector<int>& nums) {
         int n = nums.size();
         dp.assign(n,-inf);
-        return memo(0,n,dp,nums);
+        return memo(n-1,n,dp,nums);
         
     }
 };
