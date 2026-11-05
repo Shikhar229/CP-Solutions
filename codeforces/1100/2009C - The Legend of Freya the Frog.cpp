@@ -39,14 +39,14 @@ void solve() {
     ll k;
     cin >> k;
 
-    ll forx  = (x+k-1)/k;
-    ll fory = (y+k-1)/k;
+    ll a  = (x+k-1)/k;
+    ll b = (y+k-1)/k;
     
-    if(forx > fory){
-        cout <<2 * (forx)-1<< "\n";
+    if(a > b){
+        cout <<2 *a-1<< "\n";
     }
     else{
-        cout << 2 * fory << "\n";
+        cout << 2 *b << "\n";
         
     }
         
