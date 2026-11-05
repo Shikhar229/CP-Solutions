@@ -1,32 +1,28 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define ll long long
 
-int main() 
-{
+int main(){
     int n;
-    cin>>n;
-    vector<ll>a(n);
-    for(int i= 0;i <n; i++){
-        cin >> a[i];
-    }
-    // choose tow indexes count how many uniques are there store it 
-    
-    unsigned ll maxi = 0;
-    int l = 0;
-    set<ll>st;
-    for(int r = 0;r < n;r++){
-        while(st.count(a[r])){
-            st.erase(a[l]);
-            l++;
-        }
+    cin>> n;
+    vector<int>a(n);
 
-        st.insert(a[r]);
-        maxi = max(maxi,1LL* st.size());
+    map<int,int>mp;
+
+    int ans = 0;
+    int l = 0;
+    for(int i = 0;i < n; i++){
+        cin >> a[i];
+        
+        while(mp[a[i]] > 0){
+            mp[a[l]]--;
+            l++;
+            
+            
+        }
+        mp[a[i]]++;
+        ans = max(ans,i-l+1); 
+        
     }
-    cout << maxi << "\n";
-    
-    
-    
+    cout << ans << endl;
     
 }
